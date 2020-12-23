@@ -2,6 +2,11 @@
 
 ## Build Docker Image
 
+Linuxkit Docker Image with added git remote build context. Instead of `git clone <REPO>` and the local path of the repo just use the following syntax 
+```
+<GIT_PKG_REPO>#<PKG_REPO_BRANCH>/[PKG_REPO_SUBDIR]
+```
+
 Build Docker image with remote context.
 
 ```
