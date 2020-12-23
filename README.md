@@ -31,3 +31,4 @@ Instead of first `git clone <REPO>` and use the local path of the repo for linux
 # Run CrunOS build
 
 To run CrunOS build inside of a qemu vm additional qemu / qemu img is needed! 
+Instead of `linuxkit run [qemu]` you can use a qemu(-kvm) container with https://github.com/crunos/qemu
