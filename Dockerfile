@@ -6,8 +6,7 @@ FROM    $GOBUILD_IMAGE AS gobuild
 RUN     apk --update --no-cache add \
 	build-base \
         git
-
-RUN     go get --buildmode pie --ldflags "-s -w -extldflags \"-static\"" -u github.com/linuxkit/linuxkit/src/cmd/linuxkit
+RUN     go install --buildmode pie --ldflags "-s -w -extldflags \"-static\"" github.com/linuxkit/linuxkit/src/cmd/linuxkit@latest 
 
 RUN	ls -lh /go/bin/linuxkit
 
@@ -17,14 +16,10 @@ RUN	ldd /go/bin/linuxkit
 RUN	ls -lh /go/bin/linuxkit
 
 
-
 FROM    $BASE_IMAGE
 
-RUN     apk --update --no-cache add \
-#        ca-certificates \
-	git
+RUN     apk --update --no-cache add git
 
 COPY    --from=gobuild /go/bin/linuxkit /usr/bin/
-COPY	files/ /
 
-ENTRYPOINT      [ "/usr/bin/entrypoint", "/usr/bin/linuxkit" ]
+ENTRYPOINT      [ "/usr/bin/linuxkit" ]
